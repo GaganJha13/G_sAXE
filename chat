@@ -1,0 +1,45 @@
+import requests
+import json
+
+def get_response(user_input):
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDYHWMhT36ygiWt-MIMqkMXsYhaDBS-5WM"
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": user_input
+                    }
+                ]
+            }
+        ]
+    }
+
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+
+    if response.status_code == 200:
+        response_json = response.json()
+        content = response_json['candidates'][0]['content']['parts'][0]['text']
+        return content
+    else:
+        return f"Failed to get response: {response.status_code}, {response.text}"
+
+def main():
+    print("Type 'exit' to stop the chatbot.")
+    while True:
+        try:
+            user_input = input("You: ")
+            if user_input.lower() == 'exit':
+                print("Exiting the chatbot.")
+                break
+            response = get_response(user_input)
+            print(f"Bot: {response}")
+        except:
+            print(f" This is an error it might be becuase of the slow internet connection you can Try again!!")
+
+
+if __name__ == "__main__":
+    main()
