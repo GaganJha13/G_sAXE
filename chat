@@ -2,7 +2,7 @@ import requests
 import json
 
 def get_response(user_input):
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDYHWMhT36ygiWt-MIMqkMXsYhaDBS-5WM"
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=Gemini API Key"
     headers = {
         "Content-Type": "application/json"
     }
